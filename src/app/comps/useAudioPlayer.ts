@@ -3,21 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useAtom } from "jotai";
 import { playSongAtom } from "../atoms/atoms";
 
-export interface Song {
-  id: string;
-  name: string;
-  artist: string;
-  duration: number;
-  image: { url: string }[];
-  downloadUrl: { url: string }[];
-  artists: {
-    primary: [
-      {
-        name: string;
-      },
-    ];
-  };
-}
+import { Song } from "@/lib/types";
 
 export interface PlayerProps {
   songList: Song[];

@@ -13,7 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
-import { useAudioPlayer, Song } from "./useAudioPlayer";
+import { useAudioPlayer } from "./useAudioPlayer";
+import { Song } from "@/lib/types";
 import { getSongData } from "../utils/api";
 import { useAtom } from "jotai";
 import {
@@ -33,7 +34,17 @@ const Player: React.FC = () => {
   const [isExpanded, setIsExpanded] = useAtom(playerExpansionAtom);
   const [songList] = useAtom(songListAtom);
   const [songIndex, setSongIndex] = useAtom(songIndexAtom);
-  const [volume, setVolume] = useState(localStorage.getItem("volume") || "1.0");
+  const [volume, setVolume] = useState("1.0");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("volume");
+      if (stored && !isNaN(parseFloat(stored))) {
+        setVolume(stored);
+      } else {
+        setVolume("1.0");
+      }
+    }
+  }, []);
 
   const { data: song } = useQuery<Song>({
     queryKey: ["songData", songList[songIndex]?.id, songIndex],
@@ -57,8 +68,11 @@ const Player: React.FC = () => {
 
   const [backgroundColor, setBackgroundColor] = useState("gray");
 
-  const handleVolumeChange = (value: number) => {
-    const newVolume = value;
+  const handleVolumeChange = (val: number | readonly number[]) => {
+    const numericVal = typeof val === 'number' ? val : val[0];
+    if (numericVal === undefined || isNaN(numericVal)) return;
+
+    const newVolume = numericVal / 100;
     setVolume(`${newVolume}`);
     localStorage.setItem("volume", `${newVolume}`);
     if (audioRef.current) {
@@ -201,13 +215,25 @@ const Player: React.FC = () => {
 
                   <div className="flex items-center justify-center gap-4 relative">
                     <div className="flex items-center gap-2">
-                      {parseFloat(volume) === 0 ? <VolumeX /> : <Volume2 />}
+                      <div
+                        className="cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
+                        onClick={() => {
+                          const current = parseFloat(volume);
+                          const safeCurrent = isNaN(current) ? 1.0 : current;
+                          const newVol = safeCurrent > 0 ? 0 : 1;
+                          setVolume(`${newVol}`);
+                          localStorage.setItem("volume", `${newVol}`);
+                          if (audioRef.current) audioRef.current.volume = newVol;
+                        }}
+                      >
+                        {parseFloat(volume) === 0 ? <VolumeX /> : <Volume2 />}
+                      </div>
                       <Slider
-                        value={[parseFloat(volume)]}
-                        max={1.0}
-                        step={0.01}
-                        onValueChange={(value) => handleVolumeChange(typeof value === 'number' ? value : value[0])}
-                        className="cursor-pointer w-24"
+                        value={[isNaN(parseFloat(volume)) ? 100 : parseFloat(volume) * 100]}
+                        max={100}
+                        step={1}
+                        onValueChange={handleVolumeChange}
+                        className="cursor-pointer w-32 md:w-40"
                       />
                     </div>
                     <Button

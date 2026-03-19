@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Player from "./comps/player";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 // import { useQuery } from "@tanstack/react-query";
@@ -59,15 +58,9 @@ const Home = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          {/* Content Section (Optional: Add your main content here) */}
+          {/* Content Section */}
           <div className="flex-grow overflow-auto">
-            {" "}
-            {/* Ensure overflow is handled here */}
             <Search searchText={searchText} />
-          </div>
-          {/* Bottom Section: Player */}
-          <div className="">
-            <Player />
           </div>
         </div>
       )}

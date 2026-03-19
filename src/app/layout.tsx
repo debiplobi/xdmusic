@@ -5,6 +5,7 @@ import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Provider } from "jotai";
+import Player from "@/app/comps/player";
 
 const queryClient = new QueryClient();
 
@@ -17,11 +18,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-// export const metadata: Metadata = {
-//   title: "xDMusic",
-//   description: "xDMusic",
-// };
 
 export default function RootLayout({
   children,
@@ -39,7 +35,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Provider>{children}</Provider>
+            <Provider>
+              {children}
+              <Player />
+            </Provider>
           </ThemeProvider>
         </body>
       </html>
