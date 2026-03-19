@@ -14,6 +14,7 @@ export interface MediaCardProps {
     url?: string;
     type: "album" | "artist" | "playlist" | "song" | "top";
     onClick?: () => void;
+    priority?: boolean;
 }
 
 // Generates the href for the Next.js Link depending on item type
@@ -39,6 +40,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
     type,
     url,
     onClick,
+    priority = false,
 }) => {
     const content = (
         <Card className={`h-full ${onClick ? 'cursor-pointer' : ''}`} onClick={onClick}>
@@ -49,6 +51,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
                         height={300}
                         alt={title}
                         src={imageUrl}
+                        priority={priority}
                         className="w-full h-auto aspect-square object-cover rounded-t-lg"
                     />
                 </div>

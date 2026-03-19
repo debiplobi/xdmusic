@@ -75,6 +75,7 @@ export default function AlbumRoutePage() {
                                     <SongCard
                                         key={song.id}
                                         song={song}
+                                        priority={index < 6}
                                         onClick={() => {
                                             setSongList(data.songs!);
                                             setSongIndex(index);

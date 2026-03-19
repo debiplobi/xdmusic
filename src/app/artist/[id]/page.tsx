@@ -120,6 +120,7 @@ export default function ArtistRoutePage() {
                                     <SongCard
                                         key={`${song.id}-${index}`}
                                         song={song}
+                                        priority={index < 6}
                                         onClick={() => {
                                             setSongList(artistSongsData);
                                             setSongIndex(index);

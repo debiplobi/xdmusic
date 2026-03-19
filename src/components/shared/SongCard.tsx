@@ -8,9 +8,10 @@ import { Song } from "@/lib/types";
 interface SongCardProps {
     song: Song;
     onClick: () => void;
+    priority?: boolean;
 }
 
-export const SongCard: React.FC<SongCardProps> = ({ song, onClick }) => {
+export const SongCard: React.FC<SongCardProps> = ({ song, onClick, priority = false }) => {
     const title = song.title || song.name || "Unknown Song";
     const artistName =
         song.singers ||
@@ -28,6 +29,7 @@ export const SongCard: React.FC<SongCardProps> = ({ song, onClick }) => {
                         <Image
                             width={80}
                             height={80}
+                            priority={priority}
                             src={song.image[song.image.length - 1]?.url || song.image[0].url}
                             alt={title}
                             className="w-20 h-20 object-cover rounded-l-lg"
