@@ -173,7 +173,7 @@ const Player: React.FC = () => {
 								</Button>
 							</div>
 							<div className="flex-grow flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 min-h-0">
-								<div className="w-[60vw] max-w-[280px] md:max-w-[400px] shrink shrink-0 md:shrink-0 aspect-square">
+								<div className="w-[75vw] max-w-[320px] md:max-w-[400px] shrink shrink-0 md:shrink-0 aspect-square">
 									<Image
 										width={400}
 										height={400}
@@ -320,11 +320,11 @@ const Player: React.FC = () => {
 						}}
 					>
 						<Image
-							width={50}
-							height={50}
+							width={64}
+							height={64}
 							src={song.image[2].url}
 							alt={`${song.name} cover`}
-							className="rounded-md mr-3 w-[50px] h-[50px] object-cover"
+							className="rounded-md mr-3 w-[64px] h-[64px] object-cover"
 						/>
 						<div className="flex-grow mr-2">
 							<h3 className="text-sm font-medium truncate">
