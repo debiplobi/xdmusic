@@ -1,6 +1,6 @@
+import type { Song } from "@/lib/types";
 import { atom } from "jotai";
 import { searchSongData } from "../examples/songData";
-import { Song } from "@/lib/types";
 
 // type SongList = typeof albumData.data.songs;
 
