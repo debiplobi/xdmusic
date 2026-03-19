@@ -1,16 +1,15 @@
+@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@tailwind base;
-
 @custom-variant dark (&:is(.dark *));
-@tailwind components;
-@tailwind utilities;
 
 /* Custom player styles */
 .my-custom-audio-player {
-  background-color: #000 !important; /* Dark background */
-  color: #ffffff !important; /* White text */
+  background-color: #000 !important;
+  /* Dark background */
+  color: #ffffff !important;
+  /* White text */
 }
 
 /* White buttons and timestamps */
@@ -18,19 +17,23 @@
 .my-custom-audio-player .rhap_progress-bar,
 .my-custom-audio-player .rhap_current-time,
 .my-custom-audio-player .rhap_duration {
-  color: #ffffff !important; /* White text for buttons and timestamps */
+  color: #ffffff !important;
+  /* White text for buttons and timestamps */
 }
 
 .my-custom-audio-player .rhap_progress-filled {
-  background-color: #4caf50 !important; /* Green progress bar */
+  background-color: #4caf50 !important;
+  /* Green progress bar */
 }
 
 .my-custom-audio-player .rhap_progress-bar {
-  background-color: #fff1 !important; /* Dark progress bar background */
+  background-color: #fff1 !important;
+  /* Dark progress bar background */
 }
 
 .my-custom-audio-player .rhap_seekbar {
-  background-color: #777777 !important; /* Slightly lighter background for seekbar */
+  background-color: #777777 !important;
+  /* Slightly lighter background for seekbar */
 }
 
 @layer base {
@@ -61,6 +64,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -87,12 +91,15 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
@@ -102,6 +109,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

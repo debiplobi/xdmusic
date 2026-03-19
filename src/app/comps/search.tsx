@@ -144,7 +144,7 @@ const Search: React.FC<PropTypes> = ({ searchText }) => {
                             height={300}
                             alt={result.title}
                             src={result.image[2].url}
-                            className="w-full aspect-square object-cover rounded-t-lg"
+                            className="w-full h-auto aspect-square object-cover rounded-t-lg"
                           />
                           <div className="p-4">
                             <h3 className="text-lg font-bold mb-2 line-clamp-1">
@@ -225,7 +225,7 @@ const Search: React.FC<PropTypes> = ({ searchText }) => {
                               height={300}
                               alt={album.title}
                               src={album.image[2].url}
-                              className="w-full aspect-square object-cover rounded-t-lg"
+                              className="w-full h-auto aspect-square object-cover rounded-t-lg"
                             />
                           </div>
                           <div className="p-3">
@@ -265,7 +265,7 @@ const Search: React.FC<PropTypes> = ({ searchText }) => {
                               height={200}
                               alt={artist.title}
                               src={artist.image[2].url}
-                              className="w-full aspect-square object-cover rounded-t-lg"
+                              className="w-full h-auto aspect-square object-cover rounded-t-lg"
                             />
                           </div>
                           <div className="p-3 text-center">
@@ -301,7 +301,7 @@ const Search: React.FC<PropTypes> = ({ searchText }) => {
                               height={300}
                               alt={playlist.title}
                               src={playlist.image[2].url}
-                              className="w-full aspect-square object-cover rounded-t-lg"
+                              className="w-full h-auto aspect-square object-cover rounded-t-lg"
                             />
                           </div>
                           <div className="p-3">

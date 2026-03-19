@@ -128,9 +128,8 @@ const Player: React.FC = () => {
 
   return (
     <Card
-      className={`fixed bottom-0 left-0 right-0 mx-auto transition-all duration-300 ${
-        isExpanded ? "w-full " : "w-full max-w-screen-xl"
-      }`}
+      className={`fixed bottom-0 left-0 right-0 mx-auto transition-all duration-300 ${isExpanded ? "w-full " : "w-full max-w-screen-xl"
+        }`}
     >
       <CardContent className="p-0 h-full">
         <audio ref={audioRef} />
@@ -162,7 +161,7 @@ const Player: React.FC = () => {
                   height={400}
                   src={song.image[2].url}
                   alt={`${song.name} cover`}
-                  className="rounded-md"
+                  className="rounded-md w-full h-auto max-w-[400px] aspect-square object-cover"
                 />
                 <div className="flex flex-col w-full max-w-md">
                   <h2 className="text-2xl font-semibold mb-1">
@@ -176,7 +175,7 @@ const Player: React.FC = () => {
                     value={[progress]}
                     max={100}
                     step={0.1}
-                    onValueChange={(value) => seek(value[0])}
+                    onValueChange={(value) => seek(typeof value === 'number' ? value : value[0])}
                     className="cursor-pointer pb-2"
                   />
                   <div className="flex justify-between w-full text-sm mb-4">
@@ -207,7 +206,7 @@ const Player: React.FC = () => {
                         value={[parseFloat(volume)]}
                         max={1.0}
                         step={0.01}
-                        onValueChange={(value) => handleVolumeChange(value[0])}
+                        onValueChange={(value) => handleVolumeChange(typeof value === 'number' ? value : value[0])}
                         className="cursor-pointer w-24"
                       />
                     </div>
@@ -280,7 +279,7 @@ const Player: React.FC = () => {
               height={50}
               src={song.image[2].url}
               alt={`${song.name} cover`}
-              className="rounded-md mr-3"
+              className="rounded-md mr-3 w-[50px] h-[50px] object-cover"
             />
             <div className="flex-grow mr-2">
               <h3 className="text-sm font-medium truncate">
