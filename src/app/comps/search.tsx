@@ -121,7 +121,7 @@ const Search: React.FC<PropTypes> = ({ searchText }) => {
 											id={album.id}
 											title={album.title || album.name}
 											subtitle={`Year: ${album.year || ""}`}
-											description={`By ${album.artist || ""}`}
+											description={`${album.artist || ""}`}
 											imageUrl={
 												album.image?.[album.image.length - 1]?.url ||
 												album.image?.[0]?.url

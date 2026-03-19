@@ -167,7 +167,7 @@ const Player: React.FC = () => {
 									variant="ghost"
 									size="icon"
 									onClick={() => setIsExpanded(false)}
-									className="rounded-full"
+									className="rounded-full mt-5"
 								>
 									<Minimize2 className="h-10 w-10" />
 								</Button>

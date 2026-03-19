@@ -62,7 +62,7 @@ export default function PlaylistRoutePage() {
 						<Button
 							variant="secondary"
 							size="icon"
-							className="mb-6 hover:scale-105 transition-transform"
+							className="mb-6 hover:scale-105 transition-transform h-8 w-8"
 							onClick={() => router.back()}
 						>
 							<ChevronLeft />

@@ -48,7 +48,7 @@ export const MediaCard: React.FC<MediaCardProps> = ({
 }) => {
 	const content = (
 		<Card
-			className={`h-full ${onClick ? "cursor-pointer" : ""}`}
+			className={`h-full pt-0 ${onClick ? "cursor-pointer" : ""} `}
 			onClick={onClick}
 		>
 			<CardContent className="p-0 h-full flex flex-col">
