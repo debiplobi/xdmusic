@@ -289,7 +289,7 @@ const Player: React.FC = () => {
 										</div>
 
 										{/* Right: Actions - Counters left flex-1 to maintain center symmetry */}
-										<div className="hidden sm:flex flex-1 items-center justify-end min-w-0 pl-2 md:pl-4">
+										<div className="flex flex-1 items-center justify-end min-w-0 pl-2 md:pl-4">
 											<Button
 												variant="ghost"
 												size="icon"
