@@ -40,6 +40,7 @@ const Home = () => {
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search Song..."
               type="text"
+              className="flex-1"
             />
             <DropdownMenu>
               <DropdownMenuTrigger render={<Button variant="outline" size="icon" />}>

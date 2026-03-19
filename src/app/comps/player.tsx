@@ -158,25 +158,29 @@ const Player: React.FC = () => {
                 }
               }
             }}
+            className="bg-background h-[100dvh] w-full"
           >
-            <div className="p-4 h-screen md:h-screen flex flex-col">
-              <div className="flex justify-end mb-2">
+            <div className="p-4 md:p-8 h-[100dvh] flex flex-col">
+              <div className="flex justify-end mb-2 md:mb-4 shrink-0">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsExpanded(false)}
+                  className="rounded-full"
                 >
-                  <Minimize2 className="h-4 w-4" />
+                  <Minimize2 className="h-6 w-6" />
                 </Button>
               </div>
-              <div className="flex-grow flex flex-col md:flex-row items-center justify-center gap-8">
-                <Image
-                  width={400}
-                  height={400}
-                  src={song.image[2].url}
-                  alt={`${song.name} cover`}
-                  className="rounded-md w-full h-auto max-w-[400px] aspect-square object-cover"
-                />
+              <div className="flex-grow flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 min-h-0">
+                <div className="w-[60vw] max-w-[280px] md:max-w-[400px] shrink shrink-0 md:shrink-0 aspect-square">
+                  <Image
+                    width={400}
+                    height={400}
+                    src={song.image[2].url}
+                    alt={`${song.name} cover`}
+                    className="rounded-xl w-full h-full object-cover shadow-2xl"
+                  />
+                </div>
                 <div className="flex flex-col w-full max-w-md">
                   <h2 className="text-2xl font-semibold mb-1">
                     {he.decode(song.name)}
@@ -213,10 +217,11 @@ const Player: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-center gap-4 relative">
-                    <div className="flex items-center gap-2">
+                  <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-6 mt-4 md:mt-8">
+                    {/* Left: Volume - Hidden on extra small screens to save space */}
+                    <div className="hidden sm:flex items-center gap-3 w-32 md:w-40">
                       <div
-                        className="cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
+                        className="cursor-pointer shrink-0 text-muted-foreground hover:text-foreground transition-colors p-2"
                         onClick={() => {
                           const current = parseFloat(volume);
                           const safeCurrent = isNaN(current) ? 1.0 : current;
@@ -226,67 +231,61 @@ const Player: React.FC = () => {
                           if (audioRef.current) audioRef.current.volume = newVol;
                         }}
                       >
-                        {parseFloat(volume) === 0 ? <VolumeX /> : <Volume2 />}
+                        {parseFloat(volume) === 0 ? <VolumeX className="h-6 w-6 md:h-7 md:w-7" /> : <Volume2 className="h-6 w-6 md:h-7 md:w-7" />}
                       </div>
                       <Slider
                         value={[isNaN(parseFloat(volume)) ? 100 : parseFloat(volume) * 100]}
                         max={100}
                         step={1}
                         onValueChange={handleVolumeChange}
-                        className="cursor-pointer w-32 md:w-40"
+                        className="cursor-pointer w-full shrink-0"
                       />
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={goToBack}
-                      style={{ height: "48px", width: "48px" }}
-                    >
-                      <SkipBack style={{ height: "32px", width: "32px" }} />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={togglePlay}
-                      style={{ height: "48px", width: "48px" }}
-                    >
-                      {isPlaying ? (
-                        <Pause style={{ height: "32px", width: "32px" }} />
-                      ) : (
-                        <Play style={{ height: "32px", width: "32px" }} />
-                      )}
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={goToNext}
-                      style={{ height: "48px", width: "48px" }}
-                    >
-                      <SkipForward
-                        className="h-6 w-6"
-                        style={{ height: "32px", width: "32px" }}
-                      />
-                    </Button>
 
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      style={{ height: "48px", width: "48px" }}
-                      onClick={() =>
-                        downloadSong(song.downloadUrl[4].url, song.name)
-                      }
-                      className="absolute right-0"
-                    ></Button>
+                    {/* Center: Playback Core */}
+                    <div className="flex items-center justify-center gap-4 md:gap-6 flex-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={goToBack}
+                        className="h-14 w-14 shrink-0 rounded-full hover:bg-accent/50"
+                      >
+                        <SkipBack className="h-8 w-8 md:h-8 md:w-8" />
+                      </Button>
+                      <Button
+                        variant="default"
+                        size="icon"
+                        onClick={togglePlay}
+                        className="h-14 w-14 shrink-0 rounded-full shadow-lg hover:scale-105 transition-transform"
+                      >
+                        {isPlaying ? (
+                          <Pause className="h-8 w-8 md:h-8 md:w-8" />
+                        ) : (
+                          <Play className="h-8 w-8 md:h-8 md:w-8 ml-1" />
+                        )}
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={goToNext}
+                        className="h-14 w-14 shrink-0 rounded-full hover:bg-accent/50"
+                      >
+                        <SkipForward className="h-8 w-8 md:h-8 md:w-8" />
+                      </Button>
+                    </div>
 
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      style={{ height: "48px", width: "48px" }}
-                    >
-                      <ArrowDownToLine
-                        style={{ height: "32px", width: "32px" }}
-                      />
-                    </Button>
+                    {/* Right: Actions */}
+                    <div className="flex items-center justify-end sm:w-32 md:w-40">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        title="Download standard quality"
+                        className="h-14 w-14 shrink-0 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        onClick={() => downloadSong(song.downloadUrl?.[4]?.url || song.downloadUrl?.[0]?.url, song.name)}
+                      >
+                        <ArrowDownToLine className="h-8 w-8 md:h-8 md:w-8" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
