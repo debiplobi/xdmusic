@@ -13,10 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Search from "./comps/search";
+import { useAtom } from "jotai";
+import { searchTextAtom } from "./atoms/atoms";
 
 const Home = () => {
   const { setTheme } = useTheme();
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useAtom(searchTextAtom);
   // const [searchSongList, setSearchSongList] = useState<SearchSong[]>([]);
   // const [searchSongIndex, setSearchSongIndex] = useState(0);
 
