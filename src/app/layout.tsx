@@ -1,11 +1,14 @@
 "use client";
 // import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Provider } from "jotai";
 import Player from "@/app/comps/player";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const queryClient = new QueryClient();
 
@@ -26,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <QueryClientProvider client={queryClient}>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
